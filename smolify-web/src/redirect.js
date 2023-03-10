@@ -1,19 +1,19 @@
-function convert(longLink) {
+function redirect(hash) {
   // make api call
-  return fetch("http://localhost:8000/handleconvert", {
+  return fetch("http://localhost:8000/handleredirect", {
     method: "POST",
     headers: {
-      "Accept": "application/json",
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      link: longLink,
+      hash: hash,
     }),
   })
     .then((response) => {
-        return response.json()
+      return response.json();
     })
     .catch((error) => console.warn(error));
 }
 
-export default convert;
+export default redirect;

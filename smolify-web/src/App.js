@@ -1,20 +1,35 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import convert from "./convert";
+import redirect from "./redirect";
 
-
+const HOSTNAME = "localhost:8000";
 
 function App() {
-
-  const hostname = "smoli.fy"
-  const [shortenedLink, setShortenedLink] = useState("")
-  const [longLink, setLongLink] = useState("")
+  const [shortenedLink, setShortenedLink] = useState("");
+  const [longLink, setLongLink] = useState("");
 
   function handleClick() {
-    let newLink = convert(longLink)
-    setShortenedLink(newLink)
+    convert(longLink).then((res) => {
+      console.log(res);
+      setShortenedLink(res);
+    });
   }
+
+  useEffect(() => {
+    const hash = window.location.pathname.substring(
+      1,
+      window.location.pathname.length
+    );
+    console.log("filtered", hash)
+    if (hash) {
+      redirect(hash).then((res) => {
+        console.log(res);
+        window.location.replace(res);
+      });
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -27,7 +42,7 @@ function App() {
           id="inputLink"
           size="22"
           placeholder="Insert not smol URL here"
-          onChange={event => setLongLink(event.target.value)}
+          onChange={(event) => setLongLink(event.target.value)}
           value={longLink}
         />
         <button type="button" id="buttonSubmit" onClick={handleClick}>
@@ -35,7 +50,9 @@ function App() {
         </button>
         <div id="divShortenedContainer">
           <p id="pShortenedHeader">Your shortened link is:</p>
-          <a id="aShortenedLink" href={shortenedLink}>{hostname}/{shortenedLink}</a>
+          <a id="aShortenedLink" href={shortenedLink}>
+            {HOSTNAME}/{shortenedLink}
+          </a>
         </div>
       </header>
     </div>
