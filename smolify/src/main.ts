@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'http://35.206.254.212',
+    origin: 'http://35.206.254.212:3000', // must indicate port
   });
   await app.listen(8000); // 3000 is used by react
 }
