@@ -4,16 +4,23 @@ import { useState, useEffect } from "react";
 import convert from "./convert";
 import redirect from "./redirect";
 
-const HOSTNAME = "localhost:8000";
+const HOSTNAME = "localhost:3000";
 
 function App() {
   const [shortenedLink, setShortenedLink] = useState("");
   const [longLink, setLongLink] = useState("");
+  const [resultStyles, setResultStyles] = useState({ visibility: "hidden" })
 
   function handleClick() {
+    setResultStyles({
+      display: "hidden"
+    });
     convert(longLink).then((res) => {
       console.log(res);
       setShortenedLink(res);
+    });
+    setResultStyles({
+      display: "block"
     });
   }
 
@@ -48,7 +55,7 @@ function App() {
         <button type="button" id="buttonSubmit" onClick={handleClick}>
           Shorten
         </button>
-        <div id="divShortenedContainer">
+        <div id="divShortenedContainer" style={resultStyles}>
           <p id="pShortenedHeader">Your shortened link is:</p>
           <a id="aShortenedLink" href={shortenedLink}>
             {HOSTNAME}/{shortenedLink}

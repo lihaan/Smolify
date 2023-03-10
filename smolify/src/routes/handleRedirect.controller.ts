@@ -13,7 +13,6 @@ export class HandleRedirectController {
 
   @Post()
   handleRedirect(@Body() body: BodyRedirect): Promise<string> {
-    console.log(JSON.stringify(body));
     return this.cs.redirect(body.hash);
   }
 }

@@ -7,6 +7,6 @@ export function hashLink(url, max_links) {
   }
   hash %= max_links;
   const shortenedLink = hash.toString(16);
-  console.log(shortenedLink);
+  console.log(url, '-->', shortenedLink);
   return shortenedLink;
 }

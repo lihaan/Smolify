@@ -23,7 +23,7 @@ export class ConvertService {
 
     // store shortened link
     this.db.put(shortenedLink, link, (err) => {
-      console.log('stored', err);
+      console.warn('stored', err);
     });
 
     this.db.get(shortenedLink, (err, value) => {
@@ -35,7 +35,7 @@ export class ConvertService {
 
   redirect(hash): Promise<string> {
     return this.db.get(hash).then((value) => {
-      console.log(value);
+      console.log("retrieved", value);
       return JSON.stringify(value);
     });
   }

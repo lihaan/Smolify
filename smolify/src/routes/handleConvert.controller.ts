@@ -11,7 +11,6 @@ export class HandleConvertController {
 
   @Post()
   handleConvert(@Body() body: BodyConvert): string {
-    console.log(JSON.stringify(body.link));
     return this.cs.convert(body.link);
   }
 }
