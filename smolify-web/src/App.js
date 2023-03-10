@@ -17,7 +17,11 @@ function App() {
     });
     convert(longLink).then((res) => {
       console.log(res);
-      setShortenedLink(res);
+      if (res !== "") {
+        setShortenedLink(res);
+      } else {
+        alert("invalid URL provided!")
+      }
     });
     setResultStyles({
       display: "block"

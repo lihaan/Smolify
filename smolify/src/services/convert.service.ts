@@ -16,7 +16,7 @@ export class ConvertService {
       url = new URL(link).href;
     } catch (err) {
       console.log(err);
-      return JSON.stringify('not valid url');
+      return JSON.stringify('');
     }
 
     const shortenedLink = hashLink(url, this.max_links);
