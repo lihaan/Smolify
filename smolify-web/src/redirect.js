@@ -1,6 +1,8 @@
+import { HOSTNAME, PORT_BACKEND } from "./App";
+
 function redirect(hash) {
   // make api call
-  return fetch("http://localhost:8000/handleredirect", {
+ return fetch(`${HOSTNAME}:${PORT_BACKEND}/handleredirect`, {
     method: "POST",
     headers: {
       Accept: "application/json",

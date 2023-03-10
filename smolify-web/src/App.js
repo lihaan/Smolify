@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import convert from "./convert";
 import redirect from "./redirect";
 
-const HOSTNAME = "localhost:3000";
+export const HOSTNAME = "http://35.206.254.212";
+export const PORT_FRONTEND = "3000"
+export const PORT_BACKEND = "8000"
 
 function App() {
   const [shortenedLink, setShortenedLink] = useState("");
@@ -62,7 +64,7 @@ function App() {
         <div id="divShortenedContainer" style={resultStyles}>
           <p id="pShortenedHeader">Your shortened link is:</p>
           <a id="aShortenedLink" href={shortenedLink}>
-            {HOSTNAME}/{shortenedLink}
+            {HOSTNAME}:{PORT_FRONTEND}/{shortenedLink}
           </a>
         </div>
       </header>

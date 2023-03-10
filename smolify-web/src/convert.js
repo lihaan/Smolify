@@ -1,6 +1,8 @@
+import { HOSTNAME, PORT_BACKEND } from "./App";
+
 function convert(longLink) {
   // make api call
-  return fetch("http://localhost:8000/handleconvert", {
+  return fetch(`${HOSTNAME}:${PORT_BACKEND}/handleconvert`, {
     method: "POST",
     headers: {
       "Accept": "application/json",
